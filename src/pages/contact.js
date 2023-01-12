@@ -8,7 +8,7 @@ const contact = () => {
           <div className="section-title">
             <h2>Contact</h2>
             <p>
-              Aenean enim orci, suscipit vitae sodales ac, semper in ex. Nunc
+              Aenean enim orci, dhgughj vitae sodales ac, semper in ex. Nunc
               aliquam eget nibh eu euismod. Donec dapibus blandit quam volutpat
               sollicitudin. Aenean ac turpis ante. Mauris velit sapien, aliquet
               aliquet rhoncus quis, luctus at neque. Mauris sit amet massa sed
