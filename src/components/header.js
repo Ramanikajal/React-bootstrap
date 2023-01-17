@@ -29,7 +29,7 @@ function header() {
           </div>
         </div>
         <header id="header" className="fixed-top">
-          <div className="container d-flex align-items-center justify-content-between">
+          <div className="container d-flex align-items-center">
             <div className="logo">
               <Link to="/">
                 <h1 className="logo me-auto">City</h1>
@@ -73,6 +73,10 @@ function header() {
               <span className="d-none d-md-inline">Make an</span>
               Appointment
             </Link>
+            <Link to="/Login" class="appointment-btn scrollto">
+            <span class="d-none d-md-inline">Login/ Signup</span>
+          </Link>
+
           </div>
         </header>
       </div>

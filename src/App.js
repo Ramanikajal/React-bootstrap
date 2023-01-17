@@ -7,6 +7,7 @@ import Contact from './pages/contact'
 import About from './pages/About'
 import Appointment from './pages/appointment'
 import Layout from './components/Layout.js'
+import Login from './pages/Login';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path='/contact' element={ <Layout><Contact /></Layout>}/>
             <Route path='/about' element={<Layout><About /></Layout>}/>
             <Route path='/appointment' element={<Layout><Appointment /></Layout>}/>
+            <Route path='/Login' element={<Login />}/>
         </Routes>
     </div>
   );
