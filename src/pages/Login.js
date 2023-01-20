@@ -7,51 +7,69 @@
 // 1 . install Formik and yup Library command is => npm i formik yup , for both downloaded
 
 import React from "react";
+import "../utile.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from "yup";
 
 function Login() {
-  const onsubmitHandler = () => {
-    alert("your work is submitted !");
+  const onsubmitdata = () => {
+    alert("Submitted !");
   };
 
-  const validationSchema = yup.object().shape({
-    email: yup.string().required(),
+  const validation = yup.object().shape({
+    email: yup.string().email().required(),
     password: yup.string().required().min(8),
   });
 
   return (
-    <div>
-      <div className="container">
+    <div className="d-flex justify-content-center align-item-center">
+      <div className="first-div p-5 bg-primary">
+        <div className="box">
+          <img src="images/login.jpg" className="rounded-3" />
+        </div>
+      </div>
+      <div className="last-div p-5 bg-primary">
+        {/* Login Heading  */}
+
         <div className="section-title">
           <h2>Login</h2>
         </div>
-      </div>
-      <div>
+
+        {/* Login codeing  */}
         <Formik
+          initialValues={{ email: "", password: "" }}
           onSubmit={(values) => {
             alert(JSON.stringify(values, null, 2));
           }}
-          initialValues={{ email: "", password: "" }}
-          validationSchema={validationSchema}
+          validationSchema={validation}
         >
           {(props) => (
             <Form>
-              <Field
-                type="email"
-                name="email"
-                placeholder="Your Email"
-                required
-              />
-              <ErrorMessage name="email" component="div" />
-              <Field
-                type="password"
-                name="password"
-                placeholder="Your Password"
-                required
-              />
-              <ErrorMessage name="password" component="div" />
-              <button onSubmit={onsubmitHandler}>submit</button>
+              <div className="d-flex justify-content-center">
+                <Field
+                className="p-1"
+                  style={{ width: "300px" }}
+                  type="text"
+                  name="email"
+                  placeholder="Enter your email"
+                />
+                <ErrorMessage name="email" component="div" />
+              </div>
+              <div className="d-flex justify-content-center my-5">
+                <Field
+                className="p-1"
+                  style={{ width: "300px" }}
+                  type="password"
+                  name="password"
+                  placeholder="Enter your password"
+                />
+                <ErrorMessage name="password" component="div" />
+              </div>
+              <div className="d-flex justify-content-center ">
+                <button type="submit" onSubmit={onsubmitdata}>
+                  Submit
+                </button>
+              </div>
             </Form>
           )}
         </Formik>

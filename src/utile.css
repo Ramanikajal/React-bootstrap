@@ -1,0 +1,28 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+  padding: 0;
+}
+body{
+    font-family: 'Spock Pro';
+}
+
+.first-div{
+    width: 50%;
+    height: 100vh;
+
+}
+.first-div .box{
+    width: 100%;
+    height: 600px;
+}
+.first-div .box img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: left  bottom 250px !important;
+}
+.last-div{
+    width: 50%;
+    height: 100vh;
+}
