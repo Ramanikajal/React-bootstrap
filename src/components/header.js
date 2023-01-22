@@ -66,6 +66,11 @@ function header() {
                     Contact
                   </Link>
                 </li>
+                <li>
+                  <Link className="nav-link scrollto" to="/details">
+                    Details
+                  </Link>
+                </li>
               </ul>
               <i className="bi bi-list mobile-nav-toggle" />
             </nav>

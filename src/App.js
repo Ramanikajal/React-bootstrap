@@ -8,6 +8,7 @@ import About from './pages/About'
 import Appointment from './pages/appointment'
 import Layout from './components/Layout.js'
 import Login from './pages/Login';
+import Details from './pages/Details';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path='/about' element={<Layout><About /></Layout>}/>
             <Route path='/appointment' element={<Layout><Appointment /></Layout>}/>
             <Route path='/Login' element={<Login />}/>
+            <Route path='/details' element={<Details/>}/>
         </Routes>
     </div>
   );

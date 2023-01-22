@@ -1,8 +1,4 @@
-* {
-  margin: 0;
-  box-sizing: border-box;
-  padding: 0;
-}
+
 body{
     font-family: 'Spock Pro';
 }
@@ -25,4 +21,28 @@ body{
 .last-div{
     width: 50%;
     height: 100vh;
+}
+.error{
+    outline: none;
+    border: 1px solid red;
+}
+.border-black{
+    border: 1px solid black;
+}
+
+
+/* Details Pages Css */
+.Doctors{
+    width: 50%;
+    height: 100vh;
+}
+.madication{
+    width: 50%;
+    height: 100vh;
+}
+.ms-custom{
+    margin-left: 12rem !important;
+}
+.effect{
+    color: red;
 }
