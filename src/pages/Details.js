@@ -9,7 +9,6 @@ function Details() {
     alert("submitted !");
   };
 
-
   let DoctorsValidationSchema = yup.object().shape({
     userId: yup
       .string()
@@ -55,6 +54,7 @@ function Details() {
       .boolean()
       .oneOf([true], "You must accept the terms and conditions")
       .required(),
+    picked: yup.string().required("Select Any categray"),
   });
   return (
     <div className="d-flex">
@@ -162,6 +162,14 @@ function Details() {
                 />
                 <ErrorMessage name="password" component="div" />
               </div>
+              <div className="ms-custom my-4">
+                <label>GEnder :</label>
+                <Field type="radio" name="picked" value="Male" />
+                <label>Male</label>
+                <Field type="radio" name="picked" value="Female" />
+                <label>Female</label>
+                <ErrorMessage name="picked" component="span" />
+              </div>
               <div className="ms-custom">
                 <Field
                   type="checkbox"
@@ -194,7 +202,79 @@ function Details() {
           )}
         </Formik>
       </div>
-      <div className="madication bg-primary">mapa</div>
+      <div className="madication bg-primary">
+        <div className="text-center">
+          <h2>Medication Administration Form</h2>
+          <p>For prescribed medication to be administered at nursery</p>
+        </div>
+        <div className="d-flex align-item-center justify-space-between">
+          <Formik
+            initialValues={{
+              userId: "",
+              email: "",
+              password: "",
+              firstName: "",
+              lastName: "",
+              confirm: "",
+              checky: "",
+            }}
+            onSubmit={(values) => {
+              alert(JSON.stringify(values, null, 2));
+            }}
+            const
+            validationSchema={DoctorsValidationSchema}
+          >
+            {({ touched, errors }) => (
+              <Form>
+                <h5 className="d-block ms-custom">Childs Name</h5>
+                <div className="ms-custom my-4">
+                  <Field
+                    className={`Medication-details ${
+                      touched.firstName && errors.firstName
+                        ? "error"
+                        : "border-black"
+                    }`}
+                    type="text"
+                    name="firstName"
+                  />
+                  <br />
+                  <label>First Name : </label>
+                  <ErrorMessage name="firstName" component="div" />
+                </div>
+                <div className="ms-custom my-4">
+                  <Field
+                    className={`Medication-details ${
+                      touched.lastName && errors.lastName
+                        ? "error"
+                        : "border-black"
+                    }`}
+                    type="text"
+                    name="lastName"
+                  />
+                  <br />
+                  <label>Last Name : </label>
+                  <ErrorMessage name="lastName" component="div" />
+                </div>
+
+                <div className="text-center">
+                  <label>Childs date of birth</label><br/>
+                  <input type="date"/>
+                </div>
+
+                <div className="d-block ms-custom my-4">
+                  <button
+                    className="btn btn-success"
+                    type="submit"
+                    onSubmit={onSubmitHandler}
+                  >
+                    Submit & Continue
+                  </button>
+                </div>
+              </Form>
+            )}
+          </Formik>
+        </div>
+      </div>
     </div>
   );
 }
