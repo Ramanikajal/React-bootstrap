@@ -2,33 +2,31 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 
-function AddMedicine({ Display1, setDisplay1 }) {
+function EditeMedicine({ Display1, setDisplay1 ,SelectData}) {
   const handleClose = () => setDisplay1(false);
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
-    console.info("event++", event.target.name.value);
-    console.info("event++", event.target.price.value);
-    console.info("event++", event.target.quantity.value);
     const Medicine = {
-      id: new Date().getTime(),
+      id: SelectData.id,
       name: event.target.name.value,
       price: event.target.price.value,
       quantity: event.target.quantity.value,
     };
 
-    console.info("Medicine++", Medicine);
+    const  data = JSON.parse(localStorage.getItem('medicineData'));
+    console.log("update" ,  Medicine)
+    const UpdateDate = data.map((i)=>{
 
-    if (localStorage.getItem("medicineData")) {
-      const data = JSON.parse(localStorage.getItem("medicineData"));
-      data.push(Medicine);
-      localStorage.setItem("medicineData", JSON.stringify(data));
-    } else {
-      const medicineArry = JSON.stringify([Medicine]);
-      localStorage.setItem("medicineData", medicineArry);
-    }
+        if(i.id === Medicine.id){
+            i = Medicine
+        }
+        return i
+    })
 
-    setDisplay1(false);
+    localStorage.setItem('medicineData',JSON.stringify(UpdateDate))
+    setDisplay1(false)
+    
   };
   return (
     <div>
@@ -44,8 +42,7 @@ function AddMedicine({ Display1, setDisplay1 }) {
                 type="text"
                 name="name"
                 autoFocus
-                defaultValue={"m"}
-              />
+                defaultValue={SelectData.name}              />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Price</Form.Label>
@@ -53,8 +50,7 @@ function AddMedicine({ Display1, setDisplay1 }) {
                 type="number"
                 name="price"
                 autoFocus
-                defaultValue={1}
-              />
+                defaultValue={SelectData.price}              />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Qauntity</Form.Label>
@@ -62,7 +58,7 @@ function AddMedicine({ Display1, setDisplay1 }) {
                 type="number"
                 name="quantity"
                 autoFocus
-                defaultValue={100}
+                defaultValue={SelectData.quantity}
               />
             </Form.Group>
             <div className="d-flex justify-content-end">
@@ -80,4 +76,4 @@ function AddMedicine({ Display1, setDisplay1 }) {
   );
 }
 
-export default AddMedicine;
+export default EditeMedicine;
