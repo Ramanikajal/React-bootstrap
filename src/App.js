@@ -9,6 +9,8 @@ import Appointment from './pages/appointment'
 import Layout from './components/Layout.js'
 import Login from './pages/Login';
 import Details from './pages/Details';
+import AddEditePage from './pages/AddEditePage';
+import AddMedicinePage from './pages/AddMedicinePage';
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
             <Route path='/doctors' element={<Layout><Doctors /></Layout>}/>
             <Route path='/contact' element={ <Layout><Contact /></Layout>}/>
             <Route path='/about' element={<Layout><About /></Layout>}/>
+            <Route path='/AddEdit/:id' element={<AddEditePage />}/>
+            <Route path='/AddMedicenPage' element={<AddMedicinePage />}/>
             <Route path='/appointment' element={<Layout><Appointment /></Layout>}/>
             <Route path='/Login' element={<Login />}/>
             <Route path='/details' element={<Details/>}/>

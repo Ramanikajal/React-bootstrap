@@ -2,8 +2,13 @@ import React, { useState, useEffect } from "react";
 import Table from "react-bootstrap/Table";
 import AddMedicine from "../components/Modal/Add Medicine";
 import EditeMedicine from "../components/Modal/EditeMedicine";
+import { useNavigate} from 'react-router-dom';
+
 
 const Department = () => {
+
+  const Navigate1 = useNavigate()
+    
   const [Display, setDisplay] = useState(false);
 
   const [MedicineList, setMedicineList] = useState([]);
@@ -20,7 +25,8 @@ const Department = () => {
   
 
   const onclickHandler = () => {
-    setDisplay(true);
+    // setDisplay(true);
+    Navigate1('/AddMedicenPage')
   };
 
   const onclickDelete = (event) => {
@@ -57,9 +63,11 @@ const Department = () => {
 
   //   Edit
   const onclickEdit = (data) => {
-    console.info("edit", data);
-    setSelectData(data);
-    setEdit(true);
+      console.info("edit", data.id);
+      setSelectData(data);
+      // setEdit(true);
+      Navigate1(`/AddEdit/${data.id}`)
+    
   };
   return (
     <div>
