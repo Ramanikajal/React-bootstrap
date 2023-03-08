@@ -67,8 +67,8 @@ function header() {
                   </Link>
                 </li>
                 <li>
-                  <Link className="nav-link scrollto" to="/details">
-                    Details
+                  <Link className="nav-link scrollto" to="/MedicineList">
+                    MedicineList
                   </Link>
                 </li>
               </ul>

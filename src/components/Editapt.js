@@ -1,16 +1,12 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-// import{Editapt}from"../components/Editapt"
-import Editapt from "../components/Editapt";
-import { useState } from 'react'; 
 
- function Appointment() {
-  const [editdata, seteditdata] = useState({})
-  const [edit, setedit] = useState(false)
+
+export default function Editapt(data) {
   const dispatch = useDispatch();
   const navigator = useNavigate() ;
-
+ 
   const onSubmit = (event) => {
     event.preventDefault();
 
@@ -41,7 +37,7 @@ import { useState } from 'react';
               placerat mi et suscipit pulvinar.
             </p>
           </div>
-          < Editapt show={edit} setShow={setedit} data={editdata} />
+          
           <form
             action
             method="post"
@@ -57,7 +53,7 @@ import { useState } from 'react';
                   className="form-control"
                   id="name"
                   placeholder="Your Name"
-                  data-rule="name"
+                  data-rule="minlen:4"
                   data-msg="Please enter at least 4 chars"
                 />
                 <div className="validate" />
@@ -114,4 +110,4 @@ import { useState } from 'react';
   );
 }
 
-export default Appointment;
+// export default Appointment;

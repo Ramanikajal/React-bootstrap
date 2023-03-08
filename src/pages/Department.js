@@ -2,13 +2,11 @@ import React, { useState, useEffect } from "react";
 import Table from "react-bootstrap/Table";
 import AddMedicine from "../components/Modal/Add Medicine";
 import EditeMedicine from "../components/Modal/EditeMedicine";
-import { useNavigate} from 'react-router-dom';
-
+import { useNavigate } from "react-router-dom";
 
 const Department = () => {
+  const Navigate1 = useNavigate();
 
-  const Navigate1 = useNavigate()
-    
   const [Display, setDisplay] = useState(false);
 
   const [MedicineList, setMedicineList] = useState([]);
@@ -19,14 +17,15 @@ const Department = () => {
 
   const [selectData, setSelectData] = useState({});
 
+  const [sortData, setSortData] = useState([]);
+
   useEffect(() => {
-    setMedicineList(JSON.parse(localStorage.getItem("medicineData")) || []);
-  }, [Display , Edit]);
-  
+    setMedicineList(JSON.parse(localStorage.getItem('medicineData')) || []);
+  }, [sortData]);
 
   const onclickHandler = () => {
     // setDisplay(true);
-    Navigate1('/AddMedicenPage')
+    Navigate1("/AddMedicenPage");
   };
 
   const onclickDelete = (event) => {
@@ -63,12 +62,66 @@ const Department = () => {
 
   //   Edit
   const onclickEdit = (data) => {
-      console.info("edit", data.id);
-      setSelectData(data);
-      // setEdit(true);
-      Navigate1(`/AddEdit/${data.id}`)
-    
+    console.info("edit", data.id);
+    setSelectData(data);
+    // setEdit(true);
+    Navigate1(`/AddEdit/${data.id}`);
   };
+
+  const onChangeSearch = (event) => {
+    console.info("event++", event.target.value);
+    const data = JSON.parse(localStorage.getItem("medicineData"));
+
+    const Filter = data.filter((i) => i.name == event.target.value);
+
+    if (!event.target.value) {
+      setMedicineList(data);
+    } else {
+      setMedicineList(Filter);
+    }
+  };
+
+  // Select And Filter Functionality
+
+  const OnchangeSelect = (event) => {
+    const data = JSON.parse(localStorage.getItem("medicineData"));
+
+    const filter = data.filter((i) => i.name === event.target.value);
+
+    if (!event.target.value) {
+      setMedicineList(data);
+    } else {
+      setMedicineList(filter);
+    }
+  };
+
+  //   sortingData
+  //   data ne sort karva mate ek navo usestate banavi ne pacchhi empty depandency ma store karvo !
+
+  const sortingData = () => {
+    {
+        const sort = MedicineList.sort( (a,b) => a.price - b.price);
+        localStorage.setItem('medicineData' , JSON.stringify(sort));
+        setSortData(sort)
+    }
+  };
+
+
+  const sortQuantity = () => {
+    const sort = MedicineList.sort( (a,b) => a.quantity - b.quantity);
+    localStorage.setItem('medicineData' , JSON.stringify(sort));
+    setSortData(sort)
+  }
+
+
+  const sortingName = () => {
+    
+    const sort = MedicineList.sort(  (a,b)  => a.name.localeCompare(b.name));
+    localStorage.setItem('medicineData' , JSON.stringify(sort));
+    setSortData(sort)
+    
+  }
+
   return (
     <div>
       <div className="section-title mt-5">
@@ -77,7 +130,7 @@ const Department = () => {
 
       <div className="text-center my-5">
         <button className="btn btn-primary me-2" onClick={OnCLickBulkDElete}>
-          Bulk DElete
+          Bulk Delete
         </button>
         <button className="btn btn-primary ms-2" onClick={onclickHandler}>
           Add Medicine
@@ -90,18 +143,40 @@ const Department = () => {
         setDisplay1={setEdit}
         SelectData={selectData}
       />
+
+      <div className="text-center my-5">
+        <input
+          type="text"
+          className="w-25 me-5"
+          placeholder="Search Here !"
+          onChange={onChangeSearch}
+        />
+
+        <select onChange={OnchangeSelect}>
+          <option value={""}> -- Select --</option>
+          {JSON.parse(localStorage.getItem("medicineData"))?.map((i) => {
+            return <option value={i.name}>{i.name}</option>;
+          })}
+        </select>
+      </div>
+
       <Table striped bordered hover>
         <thead>
           <tr>
             <th></th>
             <th>Id</th>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Quantity</th>
+            <th>Name <button onClick={sortingName}> ascending order</button></th>
+            <th>
+              Price
+              <button onClick={() => sortingData("price")}>
+                ascending order
+              </button>
+            </th>
+            <th>Quantity <button onClick={sortQuantity} >ascending order</button></th>
           </tr>
         </thead>
         <tbody>
-          {MedicineList.map((i, index) => {
+          {MedicineList?.map((i, index) => {
             return (
               <tr key={index}>
                 <td>

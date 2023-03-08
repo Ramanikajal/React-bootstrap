@@ -5,10 +5,10 @@ import Home from './pages/Home.js'
 import Doctors from './pages/doctors'
 import Contact from './pages/contact'
 import About from './pages/About'
-import Appointment from './pages/appointment'
+import Appointment from './pages/Appointment'
 import Layout from './components/Layout.js'
 import Login from './pages/Login';
-import Details from './pages/Details';
+import MedicineList from './pages/MedicineList';
 import AddEditePage from './pages/AddEditePage';
 import AddMedicinePage from './pages/AddMedicinePage';
 
@@ -25,7 +25,7 @@ function App() {
             <Route path='/AddMedicenPage' element={<AddMedicinePage />}/>
             <Route path='/appointment' element={<Layout><Appointment /></Layout>}/>
             <Route path='/Login' element={<Login />}/>
-            <Route path='/details' element={<Details/>}/>
+            <Route path='/MedicineList' element={<Layout><MedicineList /></Layout>}/>
         </Routes>
     </div>
   );
